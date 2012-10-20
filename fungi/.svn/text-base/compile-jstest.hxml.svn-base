@@ -1,3 +1,0 @@
--js truffle-test.js
--main TruffleTest
--cp src
