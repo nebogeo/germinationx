@@ -1,0 +1,50 @@
+// t r u f f l e Copyright (C) 2010 FoAM vzw   \_\ __     /\
+//                                          /\    /_/    / /  
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+package truffle.js;
+
+import truffle.interfaces.TextEntry;
+
+class JSTextEntry extends TextEntry
+{
+	public var Callback:Dynamic -> Void;
+
+	public function new(x,y,w,h,f:Dynamic -> Void)
+	{
+		super();
+/*		Callback = f;
+		TextField = new TextField();
+        TextField.background = true;
+        TextField.border = true;
+		TextField.text = "Enter a name before planting.";
+		TextField.type = TextFieldType.INPUT;
+		TextField.x = x;
+		TextField.y = y;		
+		TextField.width = w;
+		TextField.height = h;		
+        //TextField.backgroundColor = 0x8dd788;
+
+        var tf = new flash.text.TextFormat();
+        tf.font = "Verdana"; 
+        tf.size = 10;                
+        tf.color= 0x000000;           
+        TextField.setTextFormat(tf);
+		addChild(TextField);	           
+		
+		addEventListener(MouseEvent.MOUSE_DOWN, OnMouseDown);
+		addEventListener(flash.events.KeyboardEvent.KEY_DOWN,OnKeyDown,false); 
+*/	}
+
+}

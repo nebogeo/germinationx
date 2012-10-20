@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/437/scenarios/GerminationX/fungi/src/hxjson2
+END
+JSON.hx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/437/scenarios/GerminationX/fungi/src/hxjson2/JSON.hx
+END
+JSONEncoder.hx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/437/scenarios/GerminationX/fungi/src/hxjson2/JSONEncoder.hx
+END
+JSONToken.hx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/437/scenarios/GerminationX/fungi/src/hxjson2/JSONToken.hx
+END
+JSONParseError.hx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/437/scenarios/GerminationX/fungi/src/hxjson2/JSONParseError.hx
+END
+JSONDecoder.hx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/437/scenarios/GerminationX/fungi/src/hxjson2/JSONDecoder.hx
+END
+JSONTokenizer.hx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/437/scenarios/GerminationX/fungi/src/hxjson2/JSONTokenizer.hx
+END

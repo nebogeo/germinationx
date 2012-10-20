@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters
+END
+BlurFilter.hx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters/BlurFilter.hx
+END
+BitmapFilterQuality.hx
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters/BitmapFilterQuality.hx
+END
+BitmapFilterSet.hx
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters/BitmapFilterSet.hx
+END
+GlowFilter.hx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters/GlowFilter.hx
+END
+DropShadowFilter.hx
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters/DropShadowFilter.hx
+END
+FilterSet.hx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters/FilterSet.hx
+END
+BitmapFilter.hx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters/BitmapFilter.hx
+END
+BitmapFilterType.hx
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/filters/BitmapFilterType.hx
+END

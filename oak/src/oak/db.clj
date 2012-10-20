@@ -1,0 +1,142 @@
+;; Copyright (C) 2010 FoAM vzw
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU Affero General Public License as
+;; published by the Free Software Foundation, either version 3 of the
+;; License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU Affero General Public License for more details.
+;;
+;; You should have received a copy of the GNU Affero General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+(ns oak.db
+  (:use
+   oak.tile
+   oak.vec2
+   oak.forms
+   oak.profile
+   somnium.congomongo.coerce
+   somnium.congomongo))
+
+(mongo! :db "oak")
+
+;-------------------------------------------------------
+; thin interface to congomongo to allow us to try other
+; databases in the future
+
+(defn db-build-collection!
+  "build an entire collection from a list"
+  [collection l]
+  (doseq [item l]
+    (insert! collection item)))
+
+(defn db-add! [coll item]
+  (insert! coll item))
+
+(defn db-get [coll where]
+   (prof :db-get (fetch coll :where where)))
+
+(defn db-get-random-one [coll where]
+  (prof :db-get
+        (let [c (fetch-count coll :where where)] 
+          (fetch coll
+                 :limit 1
+                 :skip (rand-int (- c 1))
+                 :where where))))
+
+(defn db-destroy! [coll item]
+  (destroy! coll item))
+
+(def db-limit 200) ; max things in mem
+
+(defn db-map!
+  "run f on each item in the collection. loads in chunks
+   to avoid blowing memory"
+  [f coll]
+;  (println "warning - calling db-map!")
+  (loop [skip 0]
+    (let [limit db-limit 
+          items (prof :db-map-fetch (fetch coll :limit limit :skip skip))]
+      (when (not (empty? items))
+        (doseq [item items]
+          (let [new (f item)]
+            (when (not (= new item)) ; if it's changed
+              (prof :db-map-update
+                    (update! coll item new)))))
+        (recur (+ skip limit))))))
+
+(defn db-partial-map!
+  "run f on a range of items in the collection"
+  [f coll skip limit]
+  (let [skip (mod (long (* skip limit)) (fetch-count coll))
+        items (prof :db-map-fetch (fetch coll :limit limit :skip skip))]
+    (when (not (empty? items))
+      (doseq [item items]
+        (let [new (f item)]
+          (when (not (= new item)) ; if it's changed
+            (prof :db-map-update
+                  (update! coll item new))))))))
+
+
+(defn db-reduce
+  "run f on each item in the collection, in chunks"
+  [f ret coll]
+  (println "warning - calling db-reduce!")
+  (loop [skip 0 ret ret]
+    (let [limit db-limit ; so we can store more than RAM
+          items (prof :db-reduce-fetch (fetch coll :limit limit :skip skip))]
+      (if (not (empty? items))
+        (recur (+ skip limit)
+               (prof :db-reduce-work (reduce f ret items)))
+        ret))))
+
+(defn db-partial-reduce
+  "run f on a subset of items in the collection"
+  [f ret coll skip limit]
+  (let [skip (mod (long (* skip limit)) (fetch-count coll))
+        items (prof :db-reduce-fetch (fetch coll :limit limit :skip skip))]
+    (if (not (empty? items))
+      (prof :db-reduce-work (reduce f ret items))
+      ret)))
+
+(defn db-reduce-sample
+  "run f on each item in the collection matching 'where', in chunks"
+  [f ret coll where]
+  (println "warning - calling db-reduce!")
+  (loop [skip 0 ret ret]
+    (let [limit db-limit ; so we can store more than RAM
+          items (prof :db-reduce-fetch (fetch coll :limit limit :skip skip :where where))]
+      (if (not (empty? items))
+        (recur (+ skip limit)
+               (prof :db-reduce-work (reduce f ret items)))
+        ret))))
+
+
+(defn db-find-update!
+  "search for and update with result of f"
+  [f coll where]
+  (prof
+   :db-search-update
+   (let [item (fetch-one coll :where where)]
+     (when item
+       (let [new (f item)]
+         (when (not (= item new))
+           (update! coll item new)))))))
+
+(defn db-update!
+  "directly update a document"
+  [coll old new]
+  (when (not (= old new))
+    (prof
+     :db-update
+     (update! coll old new))))
+
+(defn db-add-index! [coll index]
+  "add the index"
+  (add-index! coll index))
+
+
+

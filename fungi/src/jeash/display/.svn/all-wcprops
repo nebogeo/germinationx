@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display
+END
+DebugGfx.hx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/DebugGfx.hx
+END
+DisplayObject.hx
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/DisplayObject.hx
+END
+BitmapDataRenderer.hx
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/BitmapDataRenderer.hx
+END
+GradientType.hx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/GradientType.hx
+END
+DisplayObjectContainer.hx
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/DisplayObjectContainer.hx
+END
+Graphics.hx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/Graphics.hx
+END
+Shape.hx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/Shape.hx
+END
+Stage.hx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/Stage.hx
+END
+LineScaleMode.hx
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/LineScaleMode.hx
+END
+JointStyle.hx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/JointStyle.hx
+END
+InteractiveObject.hx
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/InteractiveObject.hx
+END
+GraphicsLike.hx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/GraphicsLike.hx
+END
+BitmapData.hx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/BitmapData.hx
+END
+Loader.hx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/Loader.hx
+END
+Sprite.hx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/Sprite.hx
+END
+CapsStyle.hx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/CapsStyle.hx
+END
+Transform.hx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/Transform.hx
+END
+Bitmap.hx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/Bitmap.hx
+END
+StageQuality.hx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/StageQuality.hx
+END
+StageAlign.hx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/StageAlign.hx
+END
+SpreadMethod.hx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/SpreadMethod.hx
+END
+StageScaleMode.hx
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/StageScaleMode.hx
+END
+PixelSnapping.hx
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/PixelSnapping.hx
+END
+LoaderInfo.hx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/LoaderInfo.hx
+END
+TriangleCulling.hx
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/TriangleCulling.hx
+END
+IBitmapDrawable.hx
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/IBitmapDrawable.hx
+END
+MovieClip.hx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/MovieClip.hx
+END
+InterpolationMethod.hx
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/InterpolationMethod.hx
+END
+BlendMode.hx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/843/scenarios/GerminationX/fungi/src/jeash/display/BlendMode.hx
+END

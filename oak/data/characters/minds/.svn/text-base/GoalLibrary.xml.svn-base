@@ -1,0 +1,20 @@
+<GoalLibrary>
+
+	<!-- Interest Goals -->
+	
+	<InterestGoal name="AvoidGettingHarmed">
+		<ProtectionConstraints>
+			<Property name="[SELF](hurt)" operator="=" value="False"/>
+		</ProtectionConstraints>
+	</InterestGoal>
+
+	<ActivePursuitGoal name="SingAt([target])">
+		<PreConditions>
+		</PreConditions>
+		<SucessConditions>
+			<RecentEvent occurred="True" subject="[SELF]" action="sing" target="[target]"/>
+		</SucessConditions>
+	</ActivePursuitGoal>
+	
+	
+</GoalLibrary>

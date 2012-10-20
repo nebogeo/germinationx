@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas
+END
+CanvasTextureDesc.hx
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasTextureDesc.hx
+END
+CanvasApp.hx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasApp.hx
+END
+CanvasState.hx
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasState.hx
+END
+CanvasSoundPlayer.hx
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasSoundPlayer.hx
+END
+CanvasParticles.hx
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasParticles.hx
+END
+CanvasServerConnection.hx
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasServerConnection.hx
+END
+CanvasSprite.hx
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasSprite.hx
+END
+CanvasTextEntry.hx
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasTextEntry.hx
+END
+CanvasWorld.hx
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasWorld.hx
+END
+truffle.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/truffle.js
+END
+CanvasFrame.hx
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/1677/scenarios/GerminationX/fungi/src/truffle/canvas/CanvasFrame.hx
+END

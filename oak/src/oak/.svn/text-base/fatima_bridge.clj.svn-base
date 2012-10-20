@@ -1,0 +1,181 @@
+;; Copyright (C) 2011 FoAM vzw
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU Affero General Public License as
+;; published by the Free Software Foundation, either version 3 of the
+;; License, or (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU Affero General Public License for more details.
+;;
+;; You should have received a copy of the GNU Affero General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+(ns oak.fatima-bridge
+  (:use
+   oak.forms
+   oak.plant
+   oak.tile
+   oak.remote-agent
+   oak.spirit
+   oak.game-world
+   oak.fatima-world
+   oak.profile
+   oak.db
+   oak.defs))
+
+(defn game-world-entity-events->fatima
+  "send entity events to fatima"
+  [fw entity tile time]
+  (reduce
+   (fn [fw event]
+     ;(println (str "detected event :" event " on " (:id entity)))
+     (world-add-object
+      fw
+      {"name" event 
+       "owner" (layer->spirit-name (:layer entity))
+       "position" (str (:x (:pos entity)) "," (:y (:pos entity)))
+       "tile" (:pos tile)
+       "type" "object"
+       "time" time}))
+   fw
+   (:event-occurred entity)))
+
+(defn game-world-entity-state->fatima
+  "convert the state to objects in the fatima world"
+  [fw entity tile time]
+  (if (and
+       (not (= (:type entity) "oak")) ; filter out oaks for now
+       (or ; filter out most states
+        (= (:state entity) "grow-a")
+        (= (:state entity) "ill-a")
+        (= (:state entity) "ill-b")
+        (= (:state entity) "ill-c")))
+    (do
+      ;; (println "adding object for state" (:state entity))                                        
+      ; stops duplicates for us automatically
+      (world-add-object
+       fw
+       {"name" (str (:layer entity) "-" (:state entity) "#" (:id entity))
+        "owner" (layer->spirit-name (:layer entity))
+        "position" (str (:x (:pos entity)) "," (:y (:pos entity)))
+        "tile" (:pos tile)
+        "type" "object"
+        "time" time}))
+    fw))
+
+(defn game-world-entity->fatima
+  "process an entity into fatima objects"
+  [fw entity tile time]
+  (if (= (:entity-type entity) "plant")
+    (game-world-entity-state->fatima
+     (game-world-entity-events->fatima fw entity tile time)
+     entity tile time)
+    fw))
+
+(defn game-world-tiles->fatima
+  "gather entity info from tiles surrounding spirits"
+  [fatima-world game-world time]
+  (let [tiles (reduce
+               (fn [r spirit]
+                 (concat
+                  (game-world-get-tile-with-neighbours
+                    game-world
+                    (:tile spirit)) r))
+               ()
+               (:spirits game-world))]
+    (reduce
+     (fn [fatima-world tile]
+       (let [fatima-world
+             (reduce
+              (fn [fatima-world entity]
+                (game-world-entity->fatima
+                 fatima-world entity tile time))
+              fatima-world
+              (:entities tile))]
+         ; clear events to avoid repeat messages
+         (db-update! :tiles tile (tile-clear-events tile))
+         fatima-world))
+     fatima-world
+     tiles)))
+
+(defn game-world-summons->fatima
+  "send a random summons fromt the list to fatima"
+  [fatima-world game-world]
+  (reduce
+   (fn [fw summons]
+     (if (> (count (second summons)) 0)
+       (world-summon-agent
+        fw
+        (first summons)
+        (:pos (rand-nth (second summons))))
+       fw))
+   fatima-world 
+   (:summons game-world)))
+
+(defn game-world-offerings->fatima
+  "read the spirit offerings"
+  [fatima-world game-world time]
+  (reduce
+   (fn [fw spirit]
+      (reduce
+       (fn [fw offering]
+         (let [player-id (first offering)
+               fruit (second offering)]
+           (world-give-object fw (:name spirit)
+                              {"name" (str (:layer fruit) "-offering#" player-id)
+                               "owner" (:name spirit)
+                               "position" "nowhere"
+                               "tile" "none" ; will be seen by everyone
+                               "type" "object"
+                               "time" time})))
+       fw
+       (:offerings spirit)))
+   fatima-world
+   (:spirits game-world)))
+
+(defn game-world-sync->fatima
+  "update fatima from the game world"
+  [fatima-world game-world time]
+  (game-world-summons->fatima
+   (game-world-tiles->fatima
+    (game-world-offerings->fatima fatima-world game-world time)
+    game-world time)
+   game-world))
+
+(defn process-spirit-msg
+  "need to substitute the player names and bits here"
+  [spirit game-world]
+  (if (:msg-needs-fixup spirit)
+    (modify
+     :last-message
+     (fn [m]
+       (game-world-process-msg game-world m))
+     spirit)
+    spirit))
+
+(defn game-world-sync<-fatima
+  "update the game world from fatima"
+  [game-world fatima-world]
+  (modify :spirits
+          (fn [spirits]
+            (reduce
+             (fn [spirits agent]
+               (let [spirit (game-world-find-spirit
+                             game-world
+                             (remote-agent-name agent))]
+                 (if spirit
+                   (cons
+                    (process-spirit-msg
+                     (spirit-update
+                      spirit agent
+                      (game-world-get-tile-with-neighbours                        
+                        game-world (:tile agent))
+                      (:rules game-world))
+                     game-world)
+                              spirits)
+                   (cons (make-spirit ((:id-gen game-world)) agent) spirits))))
+             '()
+             (world-agents fatima-world)))
+          game-world))
